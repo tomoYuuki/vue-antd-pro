@@ -126,6 +126,15 @@ casual.define('user', function (role) {
   }
 })
 
+casual.define('cities', function () {
+  return {
+    name: casual.city,
+    value: casual.zip(5)
+  }
+})
+// 注意这里如果我们不传入参数的话，这里直接使用定义的方法名即可
+// console.log(casual.cities)
+
 module.exports = () => {
   const data = {
     users: [],
@@ -143,11 +152,15 @@ module.exports = () => {
     logout: {
       status: 200,
       message: 'success'
-    }
+    },
+    cities: []
   }
 
   for (let i = 0; i < 54; i++) {
     data.users.push(casual.user(casual.random_element(roleMap)))
+  }
+  for (let i = 0; i < 10; i++) {
+    data.cities.push(casual.cities)
   }
 
   return data
